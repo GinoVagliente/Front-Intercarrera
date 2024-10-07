@@ -1,0 +1,49 @@
+#ambientStats{
+    border: 10px black solid;
+    padding: 40px;
+}
+h1 {
+    font-family: "Press Start 2P", system-ui;
+    font-size: small;
+    font-style: normal;
+}
+.temp-slider.ant-slider-disabled .ant-slider-track {
+    background-color: red !important; /* Color de la pista deshabilitada */
+    height: 10px;
+    border-radius: 0%;
+}
+.hum-slider.ant-slider-disabled .ant-slider-track {
+    background-color: blue !important; /* Color de la pista deshabilitada */
+    height: 10px;
+    border-radius: 0%;
+}
+.light-slider.ant-slider-disabled .ant-slider-track {
+    background-color: yellow !important; /* Color de la pista deshabilitada */
+    height: 10px;
+    border-radius: 0%;
+}
+
+/* Ocultar el handle de los sliders */
+.temp-slider .ant-slider-handle {
+    display: none;
+}
+
+.hum-slider .ant-slider-handle {
+    display: none;
+}
+
+.light-slider .ant-slider-handle {
+    display: none;
+}
+
+.temp-slider.ant-slider-disabled .ant-slider-rail {
+    background-color: transparent !important;
+}
+
+.hum-slider.ant-slider-disabled .ant-slider-rail {
+    background-color: transparent !important;
+}
+
+.light-slider.ant-slider-disabled .ant-slider-rail {
+    background-color: transparent !important;
+}

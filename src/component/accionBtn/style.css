@@ -1,0 +1,10 @@
+.accionBtn {
+    background-color: white;
+    font-family: "Press Start 2P", system-ui;
+    font-size: small;
+    font-style: normal;
+    border: 3px solid black;
+    background: white;
+    border-radius: 0%;
+    margin: 10px;
+}
