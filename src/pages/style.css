@@ -1,8 +1,55 @@
-/* style.css */
+.layout{
+height:100vh;
 
-.layout {
-    min-height: 100vh;
 }
+.content {
+    background: #fff;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    position: relative;
+}
+
+.topContainer {
+    margin-bottom: 24px;
+}
+
+.ambient-container,
+.stats-container {
+    background-color: rgb(198, 198, 198);
+}
+
+.ambient-container {
+    margin-left: 20px;
+}
+
+.stats-container {
+    margin-right: 20px;
+}
+
+.middle-column {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Permitir que esta columna ocupe el espacio disponible */
+    justify-content: space-between; /* Asegúrate de que los elementos se distribuyan adecuadamente */
+}
+
+.bottomContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(128, 128, 128);
+    /* Puedes agregar un padding o margin si es necesario */
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 16px;
+    background-color: grey;
+}
+
 .title {
     color: black;
     margin: 0;
@@ -11,30 +58,8 @@
     font-style: normal;
 }
 
-.sider {
-    background-color: rgb(177, 177, 177) !important;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.bothSiders {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-}
-
-.content {
-    padding: 24px;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
-.btns-container {
-    margin-top: auto; /* Esto empuja los botones hacia abajo */
+.imgIzquierda img,
+.imgDerecha img {
+    width: 700px; /* Ancho fijo de 200px */
+    height: 100%; /* Altura del 100% del contenedor */
 }
