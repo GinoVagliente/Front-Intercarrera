@@ -17,6 +17,7 @@ height:100vh;
 .ambient-container,
 .stats-container {
     background-color: rgb(198, 198, 198);
+    margin: 0 10px; /* Espaciado entre contenedores */
 }
 
 .ambient-container {
@@ -40,7 +41,9 @@ height:100vh;
     justify-content: space-between;
     align-items: center;
     background-color: rgb(128, 128, 128);
-    height: 30%;
+    height: 30%; /* Ajusta esta altura si es necesario */
+    flex-shrink: 0; /* Previene que el contenedor se reduzca */
+    width: 100%;
 }
 
 .buttons-container {

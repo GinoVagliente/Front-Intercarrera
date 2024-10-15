@@ -7,6 +7,7 @@ import './style.css';
 import img from './leftSide.png';
 import img2 from './rightSide.png';
 import Chart from '../component/chartModal/chart';
+
 const { Title } = Typography;
 const { Content } = Layout;
 
