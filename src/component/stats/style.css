@@ -1,6 +1,9 @@
-#stats{
-  border: 8px black solid;
-    padding: 40px;
+#stats {
+    border: 8px black solid;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 h1 {
@@ -10,37 +13,43 @@ h1 {
 }
 
 .feliz-slider.ant-slider-disabled .ant-slider-track {
-    background-color: pink !important; /* Color para Feliz */
+    background-color: pink !important;
+    /* Color para Feliz */
     height: 10px;
     border-radius: 0%;
 }
 
 .triste-slider.ant-slider-disabled .ant-slider-track {
-    background-color: lightblue !important; /* Color para Triste */
+    background-color: lightblue !important;
+    /* Color para Triste */
     height: 10px;
     border-radius: 0%;
 }
 
 .calor-slider.ant-slider-disabled .ant-slider-track {
-    background-color: orange !important; /* Color para Calor */
+    background-color: orange !important;
+    /* Color para Calor */
     height: 10px;
     border-radius: 0%;
 }
 
 .frio-slider.ant-slider-disabled .ant-slider-track {
-    background-color: lightcyan !important; /* Color para Frio */
+    background-color: lightcyan !important;
+    /* Color para Frio */
     height: 10px;
     border-radius: 0%;
 }
 
 .sueño-slider.ant-slider-disabled .ant-slider-track {
-    background-color: lavender !important; /* Color para Sueño */
+    background-color: lavender !important;
+    /* Color para Sueño */
     height: 10px;
     border-radius: 0%;
 }
 
 .hambre-slider.ant-slider-disabled .ant-slider-track {
-    background-color: lightgreen !important; /* Color para Hambre */
+    background-color: lightgreen !important;
+    /* Color para Hambre */
     height: 10px;
     border-radius: 0%;
 }

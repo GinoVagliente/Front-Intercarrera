@@ -27,11 +27,12 @@ height:100vh;
     margin-right: 20px;
 }
 
+
 .middle-column {
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Permitir que esta columna ocupe el espacio disponible */
-    justify-content: space-between; /* Asegúrate de que los elementos se distribuyan adecuadamente */
+    justify-content: space-between;
+    height: 100%;
 }
 
 .bottomContainer {
@@ -39,7 +40,7 @@ height:100vh;
     justify-content: space-between;
     align-items: center;
     background-color: rgb(128, 128, 128);
-    /* Puedes agregar un padding o margin si es necesario */
+    height: 30%;
 }
 
 .buttons-container {
@@ -60,6 +61,8 @@ height:100vh;
 
 .imgIzquierda img,
 .imgDerecha img {
-    width: 700px; /* Ancho fijo de 200px */
-    height: 100%; /* Altura del 100% del contenedor */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
 }
+
