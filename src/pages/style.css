@@ -11,21 +11,23 @@ height:100vh;
 }
 
 .topContainer {
-    margin-bottom: 24px;
+    flex: 1; /* Esto hará que use el 50% del espacio */
+    margin-bottom: 24px; /* Mantén el margen si es necesario */
 }
 
 .ambient-container,
 .stats-container {
     background-color: rgb(198, 198, 198);
-    margin: 0 10px; /* Espaciado entre contenedores */
 }
 
 .ambient-container {
     margin-left: 20px;
+    width: 20%;
 }
 
 .stats-container {
     margin-right: 20px;
+    width: 20%;
 }
 
 
@@ -33,15 +35,15 @@ height:100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
+    height: 100%; /* Asegúrate de que tome todo el alto disponible */
 }
 
 .bottomContainer {
+    flex: 1; /* Esto hará que use el 50% del espacio restante */
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: rgb(128, 128, 128);
-    height: 30%; /* Ajusta esta altura si es necesario */
     flex-shrink: 0; /* Previene que el contenedor se reduzca */
     width: 100%;
 }
