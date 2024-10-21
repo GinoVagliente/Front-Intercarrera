@@ -32,11 +32,11 @@ const AmbientStats = () => {
 
     return (
         <div id='ambientStats'>
-            <p>Temperatura: {values.temp}</p>
+            <p>Temperatura:{values.temp}</p>
             <Slider className="temp-slider" value={values.temp} disabled />
-            <p>Humedad: {values.hum}</p>
+            <p>Humedad:{values.hum}</p>
             <Slider className="hum-slider" value={values.hum} disabled />
-            <p>Luz: {values.light}</p>
+            <p>Luz:{values.light}</p>
             <Slider className="light-slider" value={values.light} disabled />
         </div>
     );

@@ -36,13 +36,13 @@ const Stats = () => {
 
     return (
         <div id='stats'>
-            <p>Feliz: {values.feliz}</p>
+            <p>Feliz:{values.feliz}</p>
             <Slider className="feliz-slider" defaultValue={values.feliz} max={10} disabled />
-            <p>Triste: {values.triste}</p>
+            <p>Triste:{values.triste}</p>
             <Slider className="triste-slider" defaultValue={values.triste} max={10} disabled />
-            <p>sueño: {values.calor}</p>
+            <p>sueño:{values.sueño}</p>
             <Slider className="sueño-slider" defaultValue={values.sueño} max={10} disabled />
-            <p>Hambre: {values.hambre}</p>
+            <p>Hambre:{values.hambre}</p>
             <Slider className="hambre-slider" value={values.hambre} max={10} disabled />
 
         </div>

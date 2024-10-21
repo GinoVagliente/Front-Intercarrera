@@ -4,8 +4,9 @@ import AmbientStats from '../component/ambient/ambientstats';
 import AccionButtons from '../component/accionBtn/accionBtn';
 import Stats from '../component/stats/stasts';
 import './style.css';
-import img from './leftSide.png';
-import img2 from './rightSide.png';
+import img from '../images/leftSide.png';
+import img2 from '../images/rightSide.png';
+import home from '../images/home.gif';
 import Chart from '../component/chartModal/chart';
 
 const { Title } = Typography;
@@ -22,8 +23,8 @@ const Index = () => {
                     </Col>
                     <Col span={16} className="middle-column"> {/* 60% */}
                         <div className="topContainer">
-                            <Title level={3} className="title">Nombre</Title>
-                            <img src={img} alt="Imagen izquierda" className="sider-image" width={100} height={300} />
+                            <Title level={3} className="title">Kraker</Title>
+                            <img src={home} alt="main" className="mainImage"/>
                         </div>
                         <div className="bottomContainer">
                             <div className="ambient-container">
