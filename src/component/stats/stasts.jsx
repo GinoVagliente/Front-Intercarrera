@@ -3,29 +3,36 @@ import './style.css';
 import { Slider } from 'antd';
 
 const Stats = () => {
+
     const [values, setValues] = useState({
-        feliz: 1,
-        triste: 2,
-        calor: 3,
-        frio: 4,
-        sueño: 5,
-        hambre: 6,
+        feliz: 0,
+        hambre: 0,
+        triste: 0,
+        sueño: 0
     });
 
     useEffect(() => {
-        const hungerTimer = setInterval(() => {
-            setValues((prevValues) => {
-                if (prevValues.hambre > 0) {
-                    return { ...prevValues, hambre: prevValues.hambre - 1 };
-                } else {
-                    clearInterval(hungerTimer); // Detenemos el timer si llega a 0
-                    return prevValues; // No cambiar otros valores
+        const fetchSensorData = async () => {
+            try {
+                const response = await fetch('http://localhost:4000/api/sensores/ultimo');
+                if (!response.ok) {
+                    throw new Error('Error al obtener los datos del sensor');
                 }
-            });
-        }, 1000); // Cada 10 segundos
+                const data = await response.json();
+                setValues({
+                    feliz: data.estado.feliz,
+                    hambre: data.estado.hambre,
+                    triste: data.estado.triste,
+                    sueño: data.estado.sueño
+                });
+            } catch (error) {
+                console.error('Error al obtener los datos:', error);
+            }
+        };
 
-        return () => clearInterval(hungerTimer); // Limpia el intervalo al desmontar el componente
+        fetchSensorData();
     }, []);
+
 
     return (
         <div id='stats'>
@@ -33,11 +40,7 @@ const Stats = () => {
             <Slider className="feliz-slider" defaultValue={values.feliz} max={10} disabled />
             <p>Triste: {values.triste}</p>
             <Slider className="triste-slider" defaultValue={values.triste} max={10} disabled />
-            <p>Calor: {values.calor}</p>
-            <Slider className="calor-slider" defaultValue={values.calor} max={10} disabled />
-            <p>Frio: {values.frio}</p>
-            <Slider className="frio-slider" defaultValue={values.frio} max={10} disabled />
-            <p>Sueño: {values.sueño}</p>
+            <p>sueño: {values.calor}</p>
             <Slider className="sueño-slider" defaultValue={values.sueño} max={10} disabled />
             <p>Hambre: {values.hambre}</p>
             <Slider className="hambre-slider" value={values.hambre} max={10} disabled />
@@ -46,4 +49,4 @@ const Stats = () => {
     );
 };
 
-export default Stats;
+export default Stats
