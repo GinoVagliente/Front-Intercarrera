@@ -12,14 +12,17 @@ const AmbientStats = () => {
 
     useEffect(() => {
         // Conectar al WebSocket
+        const socket = io('http://localhost:4000');
 
-        const socket = io('http://localhost:4000'); // Cambia el puerto según tu configuración
-        
-        socket.on('estadoMascota', (estadoMascota) => {
-            console.log('Estado de la mascota recibido:', estadoMascota);
-            // Aquí puedes actualizar tu UI con el estado recibido
+        // Escuchar el evento 'estadoMascota'
+        socket.on('datosAguardar', (data) => {
+            console.log('Datos recibidos:', data); // Verifica los datos
+            setValues({
+                temp: data.detalles.temperatura,
+                hum: data.detalles.humedad,
+                light: data.detalles.luz
+            });
         });
-        
 
         // Limpiar la conexión al desmontar el componente
         return () => {

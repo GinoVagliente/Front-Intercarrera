@@ -1,36 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
 import { Slider } from 'antd';
+import { io } from 'socket.io-client';
 
 const Stats = () => {
 
     const [values, setValues] = useState({
-        feliz: 0,
-        hambre: 0,
-        triste: 0,
-        sueño: 0
+        feliz: 10,
+        hambre: 10,
+        triste: 10,
+        sueño: 10
     });
 
     useEffect(() => {
-        const fetchSensorData = async () => {
-            try {
-                const response = await fetch('http://localhost:4000/api/sensores/ultimo');
-                if (!response.ok) {
-                    throw new Error('Error al obtener los datos del sensor');
-                }
-                const data = await response.json();
-                setValues({
-                    feliz: data.estado.feliz,
-                    hambre: data.estado.hambre,
-                    triste: data.estado.triste,
-                    sueño: data.estado.sueño
-                });
-            } catch (error) {
-                console.error('Error al obtener los datos:', error);
-            }
-        };
+        // Conectar al WebSocket
+        const socket = io('http://localhost:4000');
 
-        fetchSensorData();
+        // Escuchar el evento 'estadoMascota'
+        socket.on('estadoMascota', (data) => {
+            console.log('Datos recibidos:', data); // Verifica los datos
+            setValues({
+                feliz: data.feliz,
+                triste: data.triste,
+                hambre: data.hambre,
+                sueño: data.sueño
+            });
+        });
+
+        // Limpiar la conexión al desmontar el componente
+        return () => {
+            socket.disconnect();
+        };
     }, []);
 
 
