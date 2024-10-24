@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
 import { Slider } from 'antd';
+import { io } from 'socket.io-client';
 
 const AmbientStats = () => {
     const [values, setValues] = useState({
@@ -10,33 +11,29 @@ const AmbientStats = () => {
     });
 
     useEffect(() => {
-        const fetchSensorData = async () => {
-            try {
-                const response = await fetch('http://localhost:4000/api/sensores/ultimo');
-                if (!response.ok) {
-                    throw new Error('Error al obtener los datos del sensor');
-                }
-                const data = await response.json();
-                setValues({
-                    temp: data.detalles.temperatura,
-                    hum: data.detalles.humedad,
-                    light: data.detalles.luz
-                });
-            } catch (error) {
-                console.error('Error al obtener los datos:', error);
-            }
-        };
+        // Conectar al WebSocket
 
-        fetchSensorData();
+        const socket = io('http://localhost:4000'); // Cambia el puerto según tu configuración
+        
+        socket.on('estadoMascota', (estadoMascota) => {
+            console.log('Estado de la mascota recibido:', estadoMascota);
+            // Aquí puedes actualizar tu UI con el estado recibido
+        });
+        
+
+        // Limpiar la conexión al desmontar el componente
+        return () => {
+            socket.disconnect();
+        };
     }, []);
 
     return (
         <div id='ambientStats'>
-            <p>Temperatura:{values.temp}</p>
+            <p>Temperatura: {values.temp}</p>
             <Slider className="temp-slider" value={values.temp} disabled />
-            <p>Humedad:{values.hum}</p>
+            <p>Humedad: {values.hum}</p>
             <Slider className="hum-slider" value={values.hum} disabled />
-            <p>Luz:{values.light}</p>
+            <p>Luz: {values.light}</p>
             <Slider className="light-slider" value={values.light} disabled />
         </div>
     );
