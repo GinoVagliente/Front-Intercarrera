@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './style.css';
-import { Slider, Button } from 'antd';
+import { Slider } from 'antd';
 import { io } from 'socket.io-client';
 
-const Stats = () => {
+const Stats = ({ setHambre }) => {
     const socketRef = useRef(null);
     const [values, setValues] = useState({
         feliz: 10,
@@ -21,12 +21,13 @@ const Stats = () => {
                 ...prevValues,
                 hambre: data.hambre
             }));
+            setHambre(data.hambre); // Actualiza el hambre en el componente padre
         });
 
         return () => {
             socketRef.current.disconnect();
         };
-    }, []);
+    }, [setHambre]);
 
     return (
         <div id='stats'>
