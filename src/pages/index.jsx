@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Layout, Typography, Row, Col } from 'antd';
 import { useAuth0 } from '@auth0/auth0-react';
 import AmbientStats from '../component/ambient/ambientstats';
@@ -10,6 +10,7 @@ import img2 from '../images/rightSide.png';
 import home from '../images/home.gif';
 import hambreimg from '../images/hambre.gif';
 import Chart from '../component/chartModal/chart';
+import huevo from '../images/huevo.gif';
 
 const { Title } = Typography;
 const { Content } = Layout;
@@ -17,6 +18,23 @@ const { Content } = Layout;
 const Index = () => {
     const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
     const [hambre, setHambre] = useState(10); // Estado para el hambre
+    const [imageSrc, setImageSrc] = useState(huevo);
+    const [despertado, setDespertado] = useState(false);
+
+    useEffect(() => {
+        if (despertado) {
+            if (hambre === 0) {
+                setImageSrc(hambreimg);
+            } else {
+                setImageSrc(home);
+            }
+        }
+    }, [hambre, despertado]);
+
+    const manejarDespertar = () => {
+        setDespertado(true);
+        setImageSrc(home);
+    };
 
     return (
         <Layout className="layout">
@@ -36,8 +54,7 @@ const Index = () => {
                         <Col span={16} className="middle-column">
                             <div className="topContainer">
                                 <Title level={3} className="title">Kraker</Title>
-                                <img src={hambre === 0 ? hambreimg : home} alt="main" className="mainImage" />
-                                <p>Bienvenido, {user.name}</p>
+                                <img src={imageSrc} alt="main" className="mainImage" />
                             </div>
                             <button onClick={() => logout({ returnTo: window.location.origin })}>Cerrar Sesión</button>
                             <div className="bottomContainer">
@@ -45,10 +62,10 @@ const Index = () => {
                                     <AmbientStats />
                                 </div>
                                 <div className="buttons-container">
-                                    <AccionButtons className="btns" />
+                                    <AccionButtons setHambre={setHambre} manejarDespertar={manejarDespertar} />
                                 </div>
                                 <div className="stats-container">
-                                    <Stats setHambre={setHambre} /> {/* Pasar setHambre */}
+                                    <Stats setHambre={setHambre} />
                                 </div>
                             </div>
                         </Col>
