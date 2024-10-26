@@ -48,19 +48,28 @@ const AccionButtons = ({ setHambre, manejarDespertar,setImageSrc  }) => {
         setDespertado(true);
     };
 
-    const diminuirSueño= () => {
+    const disminuirSueño = () => {
         socketRef.current.emit('actualizarSueño', 0);
-            setImageSrc(require('../../images/dormir.gif')); // Cambia a la imagen de dormir
-            setTimeout(() => {
-                setImageSrc(require('../../images/home.gif')); // Regresa a la imagen principal después de 3 segundos
-            }, 6000);
+        setImageSrc(require('../../images/dormir.gif')); // Cambia a la imagen de dormir
+        setTimeout(() => {
+            setValues(prevValues => {
+                const hambreActual = prevValues.hambre; // Accede al hambre actual desde el estado
+                if (hambreActual === 0) {
+                    setImageSrc(require('../../images/hambre.gif')); // Imagen de hambre
+                } else {
+                    setImageSrc(require('../../images/home.gif')); // Imagen principal
+                }
+                return prevValues; // Devuelve el estado sin cambios
+            });
+        }, 6000);
     };
+    
 
     return (
         <div>
             <Button className="accionBtn" onClick={aumentarHambre}>Alimentar</Button>
             <Button className="accionBtn" onClick={manejarDespertarClick} disabled={despertado}>Despertar</Button>
-            <Button className="accionBtn" onClick={diminuirSueño}>Dormir</Button>
+            <Button className="accionBtn" onClick={disminuirSueño}>Dormir</Button>
         </div>
     );
 }
