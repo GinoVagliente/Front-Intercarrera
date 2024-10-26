@@ -21,7 +21,14 @@ const Stats = ({ setHambre }) => {
                 ...prevValues,
                 hambre: data.hambre
             }));
-            setHambre(data.hambre); // Actualiza el hambre en el componente padre
+            setHambre(data.hambre);
+        });
+        socketRef.current.on('SueñoEstado', (data) => {
+            console.log('Estado de sueño recibido:', data);
+            setValues(prevValues => ({
+                ...prevValues,
+                sueño: data.sueño
+            }));
         });
 
         return () => {
@@ -36,7 +43,7 @@ const Stats = ({ setHambre }) => {
             <p>Triste: {values.triste}</p>
             <Slider className="triste-slider" defaultValue={values.triste} max={10} disabled />
             <p>Sueño: {values.sueño}</p>
-            <Slider className="sueño-slider" defaultValue={values.sueño} max={10} disabled />
+            <Slider className="sueño-slider" value={values.sueño} max={10} disabled />
             <p>Hambre: {values.hambre}</p>
             <Slider className="hambre-slider" value={values.hambre} max={10} disabled />
         </div>

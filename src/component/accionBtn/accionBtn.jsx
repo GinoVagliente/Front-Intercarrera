@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { io } from 'socket.io-client';
 import './style.css';
 
-const AccionButtons = ({ setHambre, manejarDespertar }) => {
+const AccionButtons = ({ setHambre, manejarDespertar,setImageSrc  }) => {
     const socketRef = useRef(null);
     const [values, setValues] = useState({
         feliz: 10,
@@ -35,6 +35,7 @@ const AccionButtons = ({ setHambre, manejarDespertar }) => {
             const nuevoHambre = Math.min(prevValues.hambre + 1, 10);
             socketRef.current.emit('actualizarHambre', nuevoHambre);
             setHambre(nuevoHambre); // Actualiza el estado de hambre en Index
+            setImageSrc(require('../../images/home.gif')); // Regresa a la imagen principal después de 3 segundos
             return {
                 ...prevValues,
                 hambre: nuevoHambre
@@ -47,10 +48,19 @@ const AccionButtons = ({ setHambre, manejarDespertar }) => {
         setDespertado(true);
     };
 
+    const diminuirSueño= () => {
+        socketRef.current.emit('actualizarSueño', 0);
+            setImageSrc(require('../../images/dormir.gif')); // Cambia a la imagen de dormir
+            setTimeout(() => {
+                setImageSrc(require('../../images/home.gif')); // Regresa a la imagen principal después de 3 segundos
+            }, 6000);
+    };
+
     return (
         <div>
             <Button className="accionBtn" onClick={aumentarHambre}>Alimentar</Button>
             <Button className="accionBtn" onClick={manejarDespertarClick} disabled={despertado}>Despertar</Button>
+            <Button className="accionBtn" onClick={diminuirSueño}>Dormir</Button>
         </div>
     );
 }

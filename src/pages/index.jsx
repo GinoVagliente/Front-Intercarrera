@@ -17,7 +17,7 @@ const { Content } = Layout;
 
 const Index = () => {
     const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
-    const [hambre, setHambre] = useState(10); // Estado para el hambre
+    const [hambre, setHambre] = useState(10);
     const [imageSrc, setImageSrc] = useState(huevo);
     const [despertado, setDespertado] = useState(false);
 
@@ -25,8 +25,6 @@ const Index = () => {
         if (despertado) {
             if (hambre === 0) {
                 setImageSrc(hambreimg);
-            } else {
-                setImageSrc(home);
             }
         }
     }, [hambre, despertado]);
@@ -62,7 +60,7 @@ const Index = () => {
                                     <AmbientStats />
                                 </div>
                                 <div className="buttons-container">
-                                    <AccionButtons setHambre={setHambre} manejarDespertar={manejarDespertar} />
+                                    <AccionButtons setHambre={setHambre} manejarDespertar={manejarDespertar} setImageSrc={setImageSrc} />
                                 </div>
                                 <div className="stats-container">
                                     <Stats setHambre={setHambre} />
