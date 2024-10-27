@@ -63,7 +63,7 @@ const Index = () => {
                                     <AccionButtons setHambre={setHambre} manejarDespertar={manejarDespertar} setImageSrc={setImageSrc} />
                                 </div>
                                 <div className="stats-container">
-                                    <Stats setHambre={setHambre} />
+                                    <Stats setHambre={setHambre} setImageSrc={setImageSrc} />
                                 </div>
                             </div>
                         </Col>
