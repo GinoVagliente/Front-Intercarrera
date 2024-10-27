@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Button, Modal } from "antd";
 import './style.css'
-const Chart = () => {
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts';
+
+const Chart = ({data}) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const showModal = () => {
@@ -27,12 +29,21 @@ const Chart = () => {
                         <span>Datos de Sensores</span>
                     </div>
                 }
-                visible={isModalVisible}
+                open={isModalVisible}
                 onOk={handleOk}
                 onCancel={handleCancel}
                 footer={null}
             >
-                <p>Contenido del gráfico o datos de sensores aquí.</p>
+                <div style={{ width: '100%', height: 300 }}>
+                    <AreaChart width={500} height={300} data={data}>
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Tooltip />
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <Area dataKey="value" fill="#8884d8" />
+                    </AreaChart>
+                </div>
+                
                 <Button type="primary" onClick={handleOk}>
                     Aceptar
                 </Button>

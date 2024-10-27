@@ -4,6 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import AmbientStats from '../component/ambient/ambientstats';
 import AccionButtons from '../component/accionBtn/accionBtn';
 import Stats from '../component/stats/stasts';
+import Login from "../component/login/login"
 import './style.css';
 import img from '../images/leftSide.png';
 import img2 from '../images/rightSide.png';
@@ -36,17 +37,13 @@ const Index = () => {
 
     return (
         <Layout className="layout">
-            <Content className="content">
+            <Content className="content, background">
                 {!isAuthenticated ? (
-                    <div className="auth-container">
-                        <Title level={3}>Bienvenido a Kraker</Title>
-                        <p>Por favor, inicia sesión para acceder a la aplicación.</p>
-                        <button onClick={() => loginWithRedirect()}>Iniciar Sesión</button>
-                    </div>
+                    <Login loginWithRedirect={loginWithRedirect} />
                 ) : (
                     <Row style={{ height: '100%' }}>
                         <Col span={4} className="imgIzquierda">
-                            <Chart />
+                            <Chart data={{Stats}}/>
                             <img src={img} alt="Imagen izquierda" className="sider-image" />
                         </Col>
                         <Col span={16} className="middle-column">
@@ -54,7 +51,7 @@ const Index = () => {
                                 <Title level={3} className="title">Kraker</Title>
                                 <img src={imageSrc} alt="main" className="mainImage" />
                             </div>
-                            <button onClick={() => logout({ returnTo: window.location.origin })}>Cerrar Sesión</button>
+                            <button id="loginbtn" onClick={() => logout({ returnTo: window.location.origin })}>Cerrar Sesión</button>
                             <div className="bottomContainer">
                                 <div className="ambient-container">
                                     <AmbientStats />
