@@ -22,6 +22,7 @@ const Index = () => {
     const [imageSrc, setImageSrc] = useState(huevo);
     const [despertado, setDespertado] = useState(false);
 
+    /*
     useEffect(() => {
         if (despertado) {
             if (hambre === 0) {
@@ -29,7 +30,18 @@ const Index = () => {
             }
         }
     }, [hambre, despertado]);
+*/
+    useEffect(() => {
+        if (despertado) {
+            if (hambre === 0) {
+                setImageSrc(hambreimg);
+            } else if (hambre > 0 && imageSrc === hambreimg) {
+                setImageSrc(home); // Cambia a la imagen de home
+            }
+        }
+    }, [hambre, despertado, imageSrc]);
 
+    
     const manejarDespertar = () => {
         setDespertado(true);
         setImageSrc(home);
@@ -43,7 +55,7 @@ const Index = () => {
                 ) : (
                     <Row style={{ height: '100%' }}>
                         <Col span={4} className="imgIzquierda">
-                            <Chart data={{Stats}}/>
+                            <Chart data={{ Stats }} />
                             <img src={img} alt="Imagen izquierda" className="sider-image" />
                         </Col>
                         <Col span={16} className="middle-column">
