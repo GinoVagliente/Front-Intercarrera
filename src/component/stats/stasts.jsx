@@ -8,7 +8,7 @@ const Stats = ({ setHambre, setImageSrc }) => {
     const [values, setValues] = useState({
         feliz: 10,
         hambre: 10,
-        triste: 10,
+        triste: 0,
         sueño: 10
     });
 
