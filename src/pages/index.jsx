@@ -37,7 +37,7 @@ const Index = () => {
             }
         }
     }, [hambre, despertado]);
-    */
+*/
     useEffect(() => {
         if (despertado) {
             if (hambre === 0) {
@@ -48,6 +48,7 @@ const Index = () => {
         }
     }, [hambre, despertado, imageSrc]);
 
+    
     const manejarDespertar = () => {
         setDespertado(true);
         setImageSrc(home);
