@@ -22,6 +22,14 @@ const Index = () => {
     const [imageSrc, setImageSrc] = useState(huevo);
     const [despertado, setDespertado] = useState(false);
 
+    const [values, setValues] = useState({
+        feliz: 10,
+        hambre: 10,
+        triste: 0,
+        sueño: 10
+    });
+
+    /*
     useEffect(() => {
         if (despertado) {
             if (hambre === 0) {
@@ -29,6 +37,16 @@ const Index = () => {
             }
         }
     }, [hambre, despertado]);
+    */
+    useEffect(() => {
+        if (despertado) {
+            if (hambre === 0) {
+                setImageSrc(hambreimg);
+            } else if (hambre > 0 && imageSrc === hambreimg) {
+                setImageSrc(home); // Cambia a la imagen de home
+            }
+        }
+    }, [hambre, despertado, imageSrc]);
 
     const manejarDespertar = () => {
         setDespertado(true);
@@ -43,7 +61,7 @@ const Index = () => {
                 ) : (
                     <Row style={{ height: '100%' }}>
                         <Col span={4} className="imgIzquierda">
-                            <Chart data={{Stats}}/>
+                            <Chart data={[values]} />
                             <img src={img} alt="Imagen izquierda" className="sider-image" />
                         </Col>
                         <Col span={16} className="middle-column">
@@ -60,7 +78,7 @@ const Index = () => {
                                     <AccionButtons setHambre={setHambre} manejarDespertar={manejarDespertar} setImageSrc={setImageSrc} />
                                 </div>
                                 <div className="stats-container">
-                                    <Stats setHambre={setHambre} setImageSrc={setImageSrc} />
+                                    <Stats setHambre={setHambre} setImageSrc={setImageSrc} values={values} setValues={setValues} />
                                 </div>
                             </div>
                         </Col>

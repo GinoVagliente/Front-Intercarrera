@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Button, Modal } from "antd";
 import './style.css'
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts';
+import { XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts';
+import { LineChart, Line } from 'recharts';
+import { BarChart, Bar } from 'recharts';
 
-const Chart = ({data}) => {
+const Chart = ({ data }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const showModal = () => {
@@ -21,7 +23,7 @@ const Chart = ({data}) => {
     return (
         <div className="chart-container">
             <Button onClick={showModal} className="chart-button">
-                Show Chart
+                Sensores
             </Button>
             <Modal
                 title={
@@ -34,16 +36,36 @@ const Chart = ({data}) => {
                 onCancel={handleCancel}
                 footer={null}
             >
-                <div style={{ width: '100%', height: 300 }}>
-                    <AreaChart width={500} height={300} data={data}>
+                
+                <ResponsiveContainer width="100%" height={300}>
+                    <LineChart data={data}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="time" tickFormatter={(time) => new Date(time).toLocaleTimeString()} />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Line type="monotone" dataKey="temperatura" stroke="#8884d8" />
+                        <Line type="monotone" dataKey="hambre" stroke="#82ca9d" />
+                        <Line type="monotone" dataKey="sueño" stroke="#ffc658" />
+                        <Line type="monotone" dataKey="feliz" stroke="#ff7300" />
+                        <Line type="monotone" dataKey="triste" stroke="#8884d8" />
+                    </LineChart>
+                </ResponsiveContainer>
+
+                <ResponsiveContainer width="100%" height={300}>
+                    <BarChart data={data}>
+                        <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="name" />
                         <YAxis />
                         <Tooltip />
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <Area dataKey="value" fill="#8884d8" />
-                    </AreaChart>
-                </div>
-                
+                        <Legend />
+                        <Bar dataKey="feliz" fill="#8884d8" />
+                        <Bar dataKey="triste" fill="#82ca9d" />
+                        <Bar dataKey="sueño" fill="#82ca9d" />
+                        <Bar dataKey="hambre" fill="#82ca9d" />
+                    </BarChart>
+                </ResponsiveContainer>
+
                 <Button type="primary" onClick={handleOk}>
                     Aceptar
                 </Button>
